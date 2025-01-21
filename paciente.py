@@ -1,4 +1,5 @@
 class Paciente:
+
     def __init__(self, cpf, nome, data_de_nascimento, peso, altura, sexo, plano_de_saude, rg, tipo_sanguineo, telefone, endereco, email, historico_hospitalar):
         self.cpf = cpf
         self.nome = nome
@@ -16,7 +17,7 @@ class Paciente:
     def __str__(self):
         return (
             f"Nome: {self.nome}\n"
-            f"Idade: {self.data_de_nascimento} anos\n"
+            f"Data de nascimento: {self.data_de_nascimento}\n"
             f"Peso: {self.peso} kg\n"
             f"Altura: {self.altura} m\n"
             f"Sexo: {self.sexo}\n"
@@ -29,11 +30,7 @@ class Paciente:
             f"Histórico Hospitalar: {self.historico_hospitalar}"
         )
 
-
-
-
 pacientes = []
-
 
 paciente1 = Paciente(32165987465, "Roberto Siqueira", "13/09/1992", 65.32, 1.73, "Masculino",
 "Unimed", "123456789", "O+", "987654321", "Rua A, 123",
@@ -45,13 +42,9 @@ paciente3 = Paciente(65987432145, "Maria das Graças Oliveira", "22/03/1956", 57
 "Feminino", "Amil", "123321456", "O+", "912348765", "Rua C, 631",
 "gracias@email.com", "Alergia a paracetamol")
 
-
 pacientes.append(paciente1)
 pacientes.append(paciente2)
 pacientes.append(paciente3)
-
-
-
 
 def buscar_paciente_por_codigo(cpf):
     for paciente in pacientes:
@@ -59,23 +52,41 @@ def buscar_paciente_por_codigo(cpf):
             return paciente
     return None
 
+class Paciente:
 
-print("== Sistema de busca de pacientes ==")
-
-
-while True:  
-    codigo_busca = int(input("[Código do paciente] : "))
-    paciente_encontrado = buscar_paciente_por_codigo(codigo_busca)
-
-
-    if paciente_encontrado:
-        print(f"{paciente_encontrado}")
-    else:
-        print("Paciente não encontrado.")
-   
+    print("=================== PACIENTES ===================")
     print("")
-    print("Deseja inserir outro código? 1 - Sim | 2 - Não")
-    tentar_novamente = int(input("[Opção]: "))
+    print("")
+    print("============== Selecione uma opção ==============")
+    print("[1] - Buscar paciente  | [2] - Registrar paciente")
+    print("[3] - Remover Paciente | [4] -       Menu inicial")
+    print("============== ___________________ ==============")
+    print("")
+    opcao_usuario = int(input("[Opção Desejada] : "))
+    print("")
+
+    if opcao_usuario == 1:
+        while True:
+            codigo_busca = int(input("[CPF do paciente] : "))
+            paciente_encontrado = buscar_paciente_por_codigo(codigo_busca)
+            resultado = buscar_paciente_por_codigo(codigo_busca)
+
+            if resultado:
+                print(resultado)
+                print("""Deseja procurar outro paciente?
+[1] - Sim | [2] - Não """)
+                opcao_tentar_novamente = int(input("[Opção] : "))
+                if opcao_tentar_novamente == 1:
+                    continue
+                else:
+                    break
+            else:
+                print("""Personagem não encontrado, deseja tentar novamente?
+[1] - Sim | [2] - Não """)
+            opcao_tentar_novamente = int(input("[Opção] : "))
+            if opcao_tentar_novamente == 1:
+                continue
+            else:
+                break
    
-    if tentar_novamente != 1:
-        break  
+ 
