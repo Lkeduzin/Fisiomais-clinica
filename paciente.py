@@ -1,5 +1,5 @@
 class Paciente:
-
+    import sqlite3
     def __init__(self, cpf, nome, data_de_nascimento, peso, altura, sexo, plano_de_saude, rg, tipo_sanguineo, telefone, endereco, email, historico_hospitalar):
         self.cpf = cpf
         self.nome = nome
@@ -29,6 +29,17 @@ class Paciente:
             f"E-mail: {self.email}\n"
             f"Histórico Hospitalar: {self.historico_hospitalar}"
         )
+    
+conexao = sqlite3.connect("pacientes.db")
+cursor = conexao.cursor()
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS personagens (
+    numero INTEGER PRIMARY KEY,
+    nome TEXT NOT NULL,
+    categoria TEXT NOT NULL
+)
+""")
+conexao.commit()
 
 pacientes = []
 
@@ -64,6 +75,7 @@ class Paciente:
     print("")
     opcao_usuario = int(input("[Opção Desejada] : "))
     print("")
+    print("")
 
     if opcao_usuario == 1:
         while True:
@@ -73,6 +85,8 @@ class Paciente:
 
             if resultado:
                 print(resultado)
+                print("")
+                print("")
                 print("""Deseja procurar outro paciente?
 [1] - Sim | [2] - Não """)
                 opcao_tentar_novamente = int(input("[Opção] : "))
@@ -81,12 +95,31 @@ class Paciente:
                 else:
                     break
             else:
-                print("""Personagem não encontrado, deseja tentar novamente?
+                print("""Paciente não encontrado, deseja tentar novamente?
 [1] - Sim | [2] - Não """)
             opcao_tentar_novamente = int(input("[Opção] : "))
             if opcao_tentar_novamente == 1:
                 continue
             else:
                 break
-   
- 
+    if opcao_usuario == 2:
+        while True:
+            try:
+                cursor.execute(
+                    "INSERT INTO personagens (numero, nome, categoria) VALUES (?, ?, ?)",
+                    (numero, nome, categoria)
+                )
+                conexao.commit()
+                print(f"\nPersonagem '{nome}' adicionado com sucesso!")
+            except sqlite3.IntegrityError:
+                print("\nErro: Já existe um personagem com esse número.")
+
+                print("")
+                print("")
+                print("""Deseja procurar outro paciente?
+[1] - Sim | [2] - Não """)
+                opcao_tentar_novamente = int(input("[Opção] : "))
+                if opcao_tentar_novamente == 1:
+                    continue
+                else:
+                    break
