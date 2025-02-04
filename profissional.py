@@ -47,8 +47,8 @@ class ProfissionalRepository:
         return True
 
 
-ramon = Profissional("Ramon", 35, "11 99999-8888", "ramon@email.com", "Fisioterapeuta", "CRM 12345", "2020-01-01")
-dudu = Profissional("Dudu", 40, "11 88888-7777", "dudu@email.com", "Fisioterapeuta", "CRM 67890", "2018-06-01")
+ramon = Profissional("Ramon", 35, "87 4002-8922", "ramon@email.com", "Fisioterapeuta", "CRM 12345", "2020-01-01")
+dudu = Profissional("Dudu", 40, "87 9900-6969", "dudu@email.com", "Fisioterapeuta", "CRM 67890", "2018-06-01")
 
 repositorio = ProfissionalRepository()
 
