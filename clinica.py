@@ -69,3 +69,6 @@ class Clinica:
         self.horario = input('Informe o novo horário de funcionamento: ')
         print('Dados Atualizados com sucesso!')
         self.menu()
+
+clinica = Clinica()
+clinica.menu
