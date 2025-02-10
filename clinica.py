@@ -1,5 +1,5 @@
 class Clinica:
-    def __init__(self, nome_c='', endereco='', telefone='', horario=''):
+    def __init__(self, nome_c, endereco, telefone, horario):
         self.nome_c = nome_c
         self.endereco = endereco
         self.telefone = telefone
@@ -21,13 +21,16 @@ class Clinica:
             elif opc == 3:
                 self.atualizar_d()
             elif opc == 4:
-                self.apagar_d()
-            elif opc == 5:
-                print("Saindo do sistema...")
-                break
+              print("Saindo do sistema...")
+              break
             else:
                 print("Opção inválida! Tente novamente.")
-
+                print('''
+                Menu da Clínica | Fisiomais
+                ----------------------------------------------
+                [1] - Registrar dados | [2] - Visualizar dados
+                [3] - Atualizar dados | [4] - Sair
+            ''')
                 opc = int(input('Opção: '))
 
     def registrar_d(self):
@@ -46,6 +49,7 @@ class Clinica:
         self.horario = input('Horário de funcionamento da clínica: ')
         print('Dados cadastrados com sucesso!')
         self.menu()
+
     def __str__(self):
         return (
         f"Nome da clínica: {self.nome_c}\n"
@@ -53,8 +57,7 @@ class Clinica:
         f"Telefone da clínica: {self.telefone}\n"
         f"Horário de funcionamento da clínica: {self.horario}"
     )
-
-        
+    
     def atualizar_d(self):
         print(f'Nome da clínica atual: {self.nome_c}')
         self.nome_c = input('Informe o novo nome: ')
