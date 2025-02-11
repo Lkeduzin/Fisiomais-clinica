@@ -1,12 +1,12 @@
 class Profissional:
-    def __init__(self, nome, idade, telefone, email, especialidade, registro, data_rgs):
+    def __init__(self, nome, idade, telefone, email, especialidade, registro,):
         self.nome = nome
         self.idade = idade
         self.telefone = telefone
         self.email = email
         self.especialidade = especialidade
         self.registro = registro
-        self.data_rgs = data_rgs
+      
 
     def info_dispn(self):
         return f"Profissional: {self.nome}\nEspecialidade: {self.especialidade}\nTelefone: {self.telefone}\nEmail: {self.email}\nRegistro: {self.registro}\nData de Registro: {self.data_rgs}"
